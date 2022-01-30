@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<style>
+
+    table{
+        width: 20%;
+    }
+    input{
+        width: 100%;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+    <div align="center">
+        <h1 id="head">This is My Calculator.</h1>
+
+    </div>
+
+
+    <form action="/process" method="get">
+        <div align="center" >
+            <table>
+                <tr>
+                    <th colspan="3">
+                        <input id="show" type="text" name="infix" th:value="${result}">
+                    </th>
+                    <th><input type="button" value="del" name="delete" onclick="removeLastOne()"></th>
+                </tr>
+                <tr>
+                    <td><input type="button" value="9" name="nine" onclick="append('9')"></td>
+                    <td><input type="button" value="8" name="seven" onclick="append('8')"></td>
+                    <td><input type="button" value="7" name="seven" onclick="append('7')"></td>
+                    <td><input type="button" value="+" name="plus" onclick="append('+')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="6" name="six" onclick="append('6')"></td>
+                    <td><input type="button" value="5" name="five" onclick="append('5')"></td>
+                    <td><input type="button" value="4" name="four" onclick="append('4')"></td>
+                    <td><input type="button" value="-" name="minus" onclick="append('-')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="3" name="three" onclick="append('3')"></td>
+                    <td><input type="button" value="2" name="two" onclick="append('2')"></td>
+                    <td><input type="button" value="1" name="one" onclick="append('1')"></td>
+                    <td><input type="button" value="*" name="multiply" onclick="append('*')"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="(" name="open" onclick="append('(')"></td>
+                    <td><input type="button" value=")" name="close" onclick="append(')')"></td>
+                    <td><input type="button" value="0" name="zero" onclick="append('0')"></td>
+                    <td><input type="button" value="/" name="divide" onclick="append('/')"></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2"><input type="submit" value= "=" name="equal"></td>
+                    <td colspan="2"><input type="button" value= "clear" name="clear" onclick="clearAll()"></td>
+
+                </tr>
+            </table>
+
+        </div>
+    </form>
+
+
+    <script>
+        function append(val){
+            let oldShow = document.getElementById("show").value
+            document.getElementById("show").value = oldShow + val
+        }
+        function clearAll(){
+            document.getElementById("show").value = ""
+        }
+        function removeLastOne(){
+            let oldShow = document.getElementById("show").value
+            document.getElementById("show").value = oldShow.substring(0, oldShow.length-1)
+        }
+    </script>
+
+</body>
+</html>
